@@ -1,37 +1,59 @@
-import java.awt.event.MouseListener;
-
 public class Board {
    private char[][] board;
 
-   public Board() { //sets creates 2D array of board and stores an empty space in all spots
-      board = new char[2][2];
-      for (int row = 0; row < 3; row++) {
-         for (int col = 0; col < 3; col++) {
-            board[row][col] = ' ';
+   public boolean checkWin(char character) {
+      if (checkRowWin(character) == 3) {
+         return true;
+      }
+      else if (checkColumnWin(character) == 3) {
+         return true;
+      }
+      else if (checkDiagonalWin(character) == 3) {
+         return true;
+      }
+      else
+         return false;
+   }
+
+   private int checkRowWin(char character) {
+      int count = 0;
+      for (int columnIndex = 0; columnIndex < 3; columnIndex++) {
+         for (int rowIndex = 0; rowIndex < 3; rowIndex++) {
+            if (board[rowIndex][columnIndex] == character) {
+               count++;
+            }
          }
       }
+      return count;
    }
 
-   public void updateBoardPlayer(int row, int col, char character) {
-      if (board[row][col] != ' ') {
-         System.out.printf("Unable to place %c", character);
+   private int checkColumnWin(char character) {
+      int count = 0;
+      for (int rowIndex = 0; rowIndex < 3; rowIndex++) {
+         for (int columnIndex = 0; columnIndex < 3; columnIndex++) {
+            if (board[rowIndex][columnIndex] == character) {
+               count++;
+            }
+         }
       }
+      return count;
    }
 
-   public char[][] updateBoardComputer() {
-      return board;
+   private int checkDiagonalWin(char character) {
+      int count = 0;
+      for (int rowIndex = 0, columnIndex = 0; rowIndex < 3 || columnIndex < 3; rowIndex++, columnIndex++) {
+         if (board[rowIndex][columnIndex] == character) {
+            count++;
+         }
+      }
+      return count;
    }
-
-   public char[][] getBoard() {
-      return board;
-   }
-
-   public void printBoard() {
+   public char[][] resetGame() {
       for (int row = 0; row < 3; row++) {
          for (int column = 0; column < 3; column++) {
-            System.out.print(board[row][column]);
+            board[row][column] = ' ';
          }
-         System.out.println();
       }
+      return board;
    }
 }

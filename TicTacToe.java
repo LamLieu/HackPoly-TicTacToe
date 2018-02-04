@@ -1,23 +1,28 @@
-import java.util.Scanner;
-
 public class TicTacToe {
    public static void main(String[] args) {
-      String input;
-      int row, col;
-      char character;
-      char[][] board;
+      boolean checkContinue = false;
+      Board boardObj = new Board();
+      char[][] board = new char[][];
 
-      Scanner kb = new Scanner(System.in);
-      Player player = new Player();
-
-      System.out.println("Welcome to the Tic Tac Toe Game!");
-      System.out.print("Pick your character X or O (type X or O): ");
-      player.setCharacter();
-
-      System.out.printf("Where would you like to place your %c?\n", player.getCharacter());
-      row = player.getRow();
-      col = player.getColumn();
-
-
+      do {
+         if (boardObj.checkWin('X')) {
+            System.out.println("You win!");
+            checkContinue = true;
+         }
+         else if (boardObj.checkWin('O')) {
+            System.out.println("You lose!");
+            checkContinue = true;
+         }
+         for (int row = 0; row < 3; row++) {
+            for (int column = 0; column < 3; column++) {
+               if (board[row][column] != 'X' || board[row][column] != 'O') {
+                  break;
+               }
+               else {
+                  board = boardObj.resetGame();
+               }
+            }
+         }
+      } while (!checkContinue);
    }
 }
