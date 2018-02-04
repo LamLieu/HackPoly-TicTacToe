@@ -3,20 +3,21 @@ import java.util.Scanner;
 public class TicTacToe {
    public static void main(String[] args) {
       String input;
+      int row, col;
+      char character;
+      char[][] board;
+
       Scanner kb = new Scanner(System.in);
+      Player player = new Player();
+
       System.out.println("Welcome to the Tic Tac Toe Game!");
       System.out.print("Pick your character X or O (type X or O): ");
-      input = kb.nextLine();
-      if (input.charAt(0) == 'X') {
+      player.setCharacter();
 
-      }
-      else if (input.charAt(0) == 'O') {
+      System.out.printf("Where would you like to place your %c?\n", player.getCharacter());
+      row = player.getRow();
+      col = player.getColumn();
 
-      }
-      else {
-         System.out.println("Error: Please enter either X or O.");
-
-      }
 
    }
 }
