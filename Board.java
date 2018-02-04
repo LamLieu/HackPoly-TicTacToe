@@ -1,6 +1,9 @@
 public class Board {
    private char[][] board;
 
+   public Board() {
+      board = new char[2][2];
+   }
    public boolean checkWin(char character) {
       if (checkRowWin(character) == 3) {
          return true;
