@@ -2,7 +2,7 @@ public class TicTacToe {
    public static void main(String[] args) {
       boolean checkContinue = false;
       Board boardObj = new Board();
-      char[][] board = new char[][];
+      char[][] board = new char[2][2];
 
       do {
          if (boardObj.checkWin('X')) {
